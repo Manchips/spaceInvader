@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Bullet
+  - I1
+  - I2
+  - I3
   layers:
   - Default
   - TransparentFX

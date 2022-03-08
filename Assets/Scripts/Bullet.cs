@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,5 +20,10 @@ public class Bullet : MonoBehaviour
     private void Fire()
     {
       myRigidbody2D.velocity = Vector2.up * speed;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+       Destroy(gameObject);
     }
 }
