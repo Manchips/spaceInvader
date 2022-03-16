@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,10 @@ public class
     //private Rigidbody body holdover from when I was using the axis 
     public GameObject bullet;
     public Transform shottingOffset;
+
+    public delegate void playerDeathDelegate();
+
+    public static event playerDeathDelegate PlayerDeathEvent;
     
     // Update is called once per frame
     void Update()
@@ -31,6 +36,13 @@ public class
         }
         
     }
-    
-    
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.CompareTag("Bullet"))
+        {
+            Destroy(gameObject);
+            PlayerDeathEvent?.Invoke();
+        }
+    }
 }
