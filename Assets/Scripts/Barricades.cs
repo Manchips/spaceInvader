@@ -23,11 +23,13 @@ public class Barricades : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (hitsTobreak == 0)
+        if (collision.gameObject.CompareTag("Bullet"))
         {
-            Destroy(gameObject);
+            hitsTobreak--;
+            if (hitsTobreak == 0)
+            {
+                Destroy(gameObject);
+            }
         }
-        
-        hitsTobreak--;
     }
 }

@@ -7,6 +7,8 @@ public class Invader : MonoBehaviour
 {
     public BoxCollider2D box; 
     //this is gonna be empty for right now but we'll add the animation later, actually wont be empty for the on die degaltes and stuff but I made this early on lol 
+
+    public new Animator animation; 
     public delegate void DeathDelegate();
     public static event DeathDelegate DeathEvent;
 
@@ -19,22 +21,25 @@ public class Invader : MonoBehaviour
     void Start()
     {
         box = this.gameObject.AddComponent<BoxCollider2D>();
+        animation = gameObject.GetComponent<Animator>();
+        animation.SetTrigger("Idle");
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     
 
     private void OnTriggerEnter2D(Collider2D col)
     {
+        animation.SetTrigger("Death");
         if (col.gameObject.CompareTag("Bullet"))
         {
             Destroy(this.gameObject);
             DeathEvent?.Invoke();
-
             if (this.gameObject.CompareTag("I1"))
             {
                 PointEvent?.Invoke(10);

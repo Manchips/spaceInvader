@@ -22,8 +22,8 @@ public class Bullet : MonoBehaviour
       myRigidbody2D.velocity = Vector2.up * speed;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-       Destroy(gameObject);
+       Destroy(this.gameObject);
     }
 }
